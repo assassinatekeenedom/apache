@@ -16,12 +16,12 @@ echo NameVirtualHost *:80>>httpd.conf
 echo ^<VirtualHost *:80^>>>httpd.conf
 echo    ServerName %1>>httpd.conf
 echo    ProxyPreserveHost On>>httpd.conf
-for /f "tokens=1,2,3 delims= " %%a in (..\bin\.static-contexts) do (
+for /f "tokens=1,2,3 delims= " %%a in (..\odx-portal-gateway\.static-contexts) do (
 	echo    ProxyPass %%a http://localhost:%%c/>>httpd.conf
 )
 echo    ProxyPass / http://%1:8080/>>httpd.conf
 echo ^</VirtualHost^>>>httpd.conf
-for /f "tokens=1,2,3 delims= " %%a in (..\bin\.static-contexts) do (
+for /f "tokens=1,2,3 delims= " %%a in (..\odx-portal-gateway\.static-contexts) do (
 	echo Listen %%c>>httpd.conf
 	echo NameVirtualHost *:%%c>>httpd.conf
 	echo ^<VirtualHost *:%%c^>>>httpd.conf
@@ -35,7 +35,8 @@ for /f "tokens=1,2,3 delims= " %%a in (..\bin\.static-contexts) do (
 	echo    ^</Directory^>>>httpd.conf
 	echo ^</VirtualHost^>>>httpd.conf
 )
-cd ..\bin
 endlocal
-httpd.exe
+cd ..\bin
+start httpd.exe
+cd ..\odx-portal-gateway
         
