@@ -1,0 +1,2 @@
+@ECHO OFF
+.startOdxPortal.bat 127.0.0.1
