@@ -1,7 +1,10 @@
-	This is the ODX-Portal Gateway
-
-	Continuous (UI) Development Environment - delivers static content directly from your repository instead of from the JBoss AS.
+A continuous (for UI) development environment; deliver static content directly from your repository instead of from the JBoss AS.
 	
+	== EFFECTS ==	
+	(1) http://localhost/
+		(*) Becomes a gateway for http://[any-portal]:8080/
+		(*) "Man in the Middle" delivery of static resource requests.
+		
 	== BENEFITS ==
 	(1) Run "your" static resources (js/html/css), without re-building/deploying.
 		(*) Not a hot-deploy edit, which could be lost.
