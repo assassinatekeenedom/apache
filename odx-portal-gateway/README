@@ -1,1 +1,15 @@
-This is the ODX-Portal Gateway
+	This is the ODX-Portal Gateway
+
+	Continuous (UI) Development Environment - delivers static content directly from your repository instead of from the JBoss AS.
+	
+	== BENEFITS ==
+	(1) Run "your" static resources (js/html/css), without re-building/deploying.
+		(*) Not a hot-deploy edit, which could be lost.
+	(2) Swap branches of (static) code without re-building/deploying.
+	(3) Point at any development server (Local/MISC/PLATFORM_AHP/etc), without re-building/deploying.
+		(*) You do NOT even have to update your system/hosts file (DNS).
+		
+	== SETUP ==
+	(1) Run the .bat file of the environment you want to develop against.
+		(*) You will automatically be prompted to provide a portal repo.
+	(2) Quickly change environments or repositories (with setRepo.bat).
