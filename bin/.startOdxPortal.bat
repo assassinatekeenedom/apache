@@ -5,7 +5,7 @@ IF NOT EXIST ".static-contexts" (
 )
 cd ..\conf\
 del httpd.conf
-copy original\httpd.conf .
+copy original\httpd.conf .>nul
 echo ####>>httpd.conf
 echo ####>>httpd.conf
 echo #DYNAMIC PORTAL GATEWAY>>httpd.conf
@@ -36,6 +36,6 @@ for /f "tokens=1,2,3 delims= " %%a in (..\bin\.static-contexts) do (
 	echo ^</VirtualHost^>>>httpd.conf
 )
 cd ..\bin
-start httpd.exe
 endlocal
+httpd.exe
         
