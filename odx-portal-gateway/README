@@ -21,8 +21,8 @@ A continuous (for UI) development environment; deliver static content directly f
 	(1) LOCALHOST.bat
 	(2) PLATFORM_AHP.bat
 	(3) MISC.bat
-	[TO-DO] ENTERPRISE.bat
-	[TO-DO] ENTERPRISE1.bat
+	(4) ENTERPRISE.bat
+	(5) ENTERPRISE1.bat
 	
 	== Man In The Middle ==
 	(1) setRepo.bat
