@@ -3,7 +3,7 @@ A continuous (for UI) development environment; deliver static content directly f
 	== EFFECTS ==	
 	(1) http://localhost/
 		(*) Becomes a gateway for http://[any-portal]:8080/
-		(*) "Man in the Middle" delivery of static resource requests.
+		(*) **MAN IN THE MIDDLE** delivery of static resource requests.
 		
 	== BENEFITS ==
 	(1) Run "your" static resources (js/html/css), without re-building/deploying.
@@ -26,7 +26,7 @@ A continuous (for UI) development environment; deliver static content directly f
 	(4) ENTERPRISE.bat
 	(5) ENTERPRISE1.bat
 	
-	== Man In The Middle ==
+	== MAN IN THE MIDDLE ==
 	(1) setRepo.bat
 		(*) Executed automatically by .startOdxPortal.bat if certain hidden data files are not present.
 		(*) Select the file-system location of the git or svn repo that will serve the static content.
