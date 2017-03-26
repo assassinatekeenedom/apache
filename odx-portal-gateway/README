@@ -26,6 +26,7 @@ A continuous (for UI) development environment; deliver static content directly f
 	
 	== Man In The Middle ==
 	(1) setRepo.bat
+		(*) Executed automatically by .startOdxPortal.bat if certain hidden data files are not present.
 		(*) Select the file-system location of the git or svn repo that will serve the static content.
 		(*) The developer should prepare their IDE(s) to point to the file-system location provided (as appropriate).
 	(*) .startOdxPortal.bat
