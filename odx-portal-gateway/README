@@ -13,9 +13,11 @@ A continuous (for UI) development environment; deliver static content directly f
 		(*) You do NOT even have to update your system/hosts file (DNS).
 		
 	== SETUP ==
-	(1) Run the .bat file of the environment you want to develop against.
+	(1) Download this repository and place it at **C:\** with the name **apache** and access **C:\apache\odx-portal-gateway**.  
+		(*) This directory contains all of the scripts needed to operate the gateway.
+	(2) Run the .bat file of the environment you want to develop against.
 		(*) You will automatically be prompted to provide a portal repo.
-	(2) Quickly change environments or repositories (with setRepo.bat).
+	(3) Quickly change environments or repositories (with setRepo.bat).
 	
 	== START ==
 	(1) LOCALHOST.bat
