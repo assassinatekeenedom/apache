@@ -23,14 +23,12 @@ git checkout -b %userstory%
 git push origin %userstory%
 xcopy .git ..\odx-portal-%userstory%\.git /s /i /h
 cd ..\odx-portal-%userstory%
-rem run sub-process to determine that svn and git are in synch.
-git status
-svn status
-echo rmdir /s /q ..\git-odx-portal-%userstory%
+rmdir /s /q ..\git-odx-portal-%userstory%
+echo svn --ignore .git and .gitignore .svn 
 echo echo details^>^>README ^(with svn and git repo information.^)
-echo svn commit -m '%userstory% - initialized synchronized git and svn repositories.'
+echo svn commit -m '%userstory% - README, initialized synchronized git and svn repositories.'
 echo git add -A
-echo git commit -a -m '%userstory% - initialized synchronized git and svn repositories.'
+echo git commit -a -m '%userstory% - README, initialized synchronized git and svn repositories.'
 echo git push -u origin HEAD:%userstory%
 echo %userstory% is ready at %cd%
 endlocal
