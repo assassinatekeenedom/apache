@@ -3,31 +3,29 @@ rem need sub-process to determine that svn and git repos are clean and up to dat
 rem this check needs to be performed at the start of this routine. If the svn and git \
 rem repos are both clean then this script can execute.
 setlocal
-echo initializing new svn and git repositories.
 set /p userstory="What is the Rally User Story Id? "
 if not exist ".userstory" (
-	echo creating directory .userstory.
+	mkdir .userstory
 )
-echo cd .userstory
-echo checking for %userstory%
+cd .userstory
 if exist "%userstory%" (
-	echo Story already exists, exit /b 0 
+	echo ERROR - %userstory% already exists.
+	exit /b 0
 )
-echo echo %userstory%^>^>.userstory
-echo type .userstory
-echo mkdir %userstory%
-echo cd %userstory%
-echo svn copy trunk svn-odx-portal-%userstory%
-echo svn co svn-odx-portal-%userstory%
-echo git clone master git-odx-portal-%userstory%
-echo cd git-odx-portal-%userstory%
-echo git checkout -b %userstory%
-echo git push origin %userstory%
-echo move .git ..\svn-odx-portal-%userstory%\
-echo cd ..\svn-odx-portal-%userstory%
+echo %userstory%>>.userstory
+mkdir %userstory%
+cd %userstory%
+svn copy https://svn.uhg.com/optum-hie/hie2/trunk/odx-portal https://svn.uhg.com/optum-hie/hie2/branches/odx-portal-%userstory% -m "%userstory% - initializing branch repository."
+svn co https://svn.uhg.com/optum-hie/hie2/branches/odx-portal-%userstory%
+git clone https://codehub.optum.com/odx-portal/odx-portal.git git-odx-portal-%userstory%
+cd git-odx-portal-%userstory%
+git checkout -b %userstory%
+git push origin %userstory%
+xcopy .git ..\odx-portal-%userstory%\.git /s /i /h
+cd ..\odx-portal-%userstory%
 rem run sub-process to determine that svn and git are in synch.
-echo git status
-echo svn status
+git status
+svn status
 echo rmdir /s /q ..\git-odx-portal-%userstory%
 echo echo details^>^>README ^(with svn and git repo information.^)
 echo svn commit -m '%userstory% - initialized synchronized git and svn repositories.'
