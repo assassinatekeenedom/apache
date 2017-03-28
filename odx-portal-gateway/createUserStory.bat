@@ -22,6 +22,7 @@ cd git-odx-portal-%userstory%
 git checkout -b %userstory%
 git push origin %userstory%
 xcopy .git ..\odx-portal-%userstory%\.git /s /i /h
+xcopy .gitignore ..\odx-portal-%userstory%\.gitignore*
 cd ..\odx-portal-%userstory%
 rmdir /s /q ..\git-odx-portal-%userstory%
 echo svn --ignore .git and .gitignore .svn 
