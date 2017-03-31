@@ -3,6 +3,7 @@ setlocal
 IF NOT EXIST ".static-contexts" (
     call setRepo.bat
 )
+echo %1>.domain
 cd ..\conf\
 del httpd.conf
 copy original\httpd.conf .>nul

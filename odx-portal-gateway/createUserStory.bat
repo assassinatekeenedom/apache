@@ -8,7 +8,7 @@ if not exist ".userstory" (
 	mkdir .userstory
 )
 cd .userstory
-if exist "%userstory%" (
+if exist "odx-portal-%userstory%" (
 	echo ERROR - %userstory% already exists.
 	exit /b 0
 )
@@ -23,13 +23,8 @@ git checkout -b %userstory%
 git push origin %userstory%
 xcopy .git ..\odx-portal-%userstory%\.git /s /i /h
 xcopy .gitignore ..\odx-portal-%userstory%\.gitignore*
-cd ..\odx-portal-%userstory%
-rmdir /s /q ..\git-odx-portal-%userstory%
-echo svn --ignore .git and .gitignore .svn 
-echo echo details^>^>README ^(with svn and git repo information.^)
-echo svn commit -m '%userstory% - README, initialized synchronized git and svn repositories.'
-echo git add -A
-echo git commit -a -m '%userstory% - README, initialized synchronized git and svn repositories.'
-echo git push -u origin HEAD:%userstory%
-echo %userstory% is ready at %cd%
+cd ..
+move odx-portal-%userstory% ..\
+cd ..\
+rmdir /s /q %userstory%
 endlocal
