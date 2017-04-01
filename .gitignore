@@ -1,7 +1,9 @@
-odx-portal-gateway/.repo
-odx-portal-gateway/.static-contexts
-conf/httpd.conf
-odx-portal-gateway/.userstory
-odx-portal-gateway/.domain
 logs/**
-.as
+conf/httpd.conf
+gateway/.repo
+gateway/.static-contexts
+gateway/.userstory
+gateway/.domain
+gateway/.as
+
+
