@@ -1,35 +1,23 @@
-# Gateway
-This is an Apache HTTPD web server that has been configured to act as a reverse proxy (gateway); and more specifically (for now) to provide a continuous UI (static resource) development environment.  It dynamically configures itself to provide you **MAN IN THE MIDDLE** access to your static resources instead of having them served from the JBoss AS deployment.
-```
-NO building, No deploying for static (js/html/css/etc) changes.
-Test code live pointing to any deployment environment (local/team/etc).
-Access through http://localhost/ instead of http://[domain]:8080/.
-```
-## Now with User Story support
-createUserStory.bat is available for creating a single folder structure that manages both git and svn repos.
-
-# README
-A continuous (for UI) development environment; deliver static content directly from your repository instead of from the JBoss AS.
-## EFFECTS	
+A continuous (for UI) development environment; deliver static content directly from your *repository* **instead of** from the *application server*.
+## EFFECTS ##
  1.  http://localhost/
-    +  Becomes a gateway for http://[any-portal]:8080/
-    +  **MAN IN THE MIDDLE** delivery of static resource requests.
-## BENEFITS
- 1.  Run "your" static resources (js/html/css), without re-building/deploying. 
-	*  Not a hot-deploy edit, which could be lost.
- 2.  Swap branches of (static) code without re-building/deploying.
- 3.  Point at any development server (Local/Team/UAT/Stage/Prod/etc), without re-building/deploying.
-	*  You do NOT even have to update your system/hosts file (DNS).
-## SETUP
- 1.  Place the **gateway** at **C:\\** with the name **apache**.
+    +  Becomes a gateway for http://[**domain**]:8080/
+    +  **MAN IN THE MIDDLE** delivery of configured static resource requests.
+## SETUP ##
+ 1.  ### Place this repository at **C:\\** and do not change the name. ###
 	*  **cd C:\\apache\\gateway**
-	*  This directory contains all of the scripts needed to operate the gateway.
- 2.  Run the .bat file of the environment you want to develop against.
+		*  This directory contains all of the scripts needed to operate the gateway.
+ 2.  Run LOCALHOST.bat or ".start.bat **domain**" to turn on the service.
 	*  You will automatically be prompted to provide a portal repo.
- 3.  Quickly change environments or repositories (with setRepo.bat).
-## START
+	*  You will access the service through your browser at http://localhost/
+ 3.  Quickly change environments or repositories (with .start.bat and setRepo.bat respectively).
+ 4.  This setup assumes there is a running version of the repository application at the target environment's port 8080 (default web application server).
+	*  You can run this service at any time, regardless of if the application server is running.
+	*  You can leave this service running when stopping and starting the application server.
+## START ##
  1.  LOCALHOST.bat
-## MAN IN THE MIDDLE
+ 2.  .start.bat **domain**
+## MAN IN THE MIDDLE ##
  1.  setRepo.bat 
 	*  Executed automatically by .start.bat if certain hidden data files are not present.
 	*  Select the file-system location of the git or svn repo that will serve the static content.
