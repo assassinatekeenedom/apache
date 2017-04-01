@@ -1,37 +1,40 @@
+# Gateway
+This is an Apache HTTPD web server that has been configured to act as a reverse proxy (gateway); and more specifically (for now) to provide a continuous UI (static resource) development environment.  It dynamically configures itself to provide you **MAN IN THE MIDDLE** access to your static resources instead of having them served from the JBoss AS deployment.
+```
+NO building, No deploying for static (js/html/css/etc) changes.
+Test code live pointing to any deployment environment (local/team/etc).
+Access through http://localhost/ instead of http://[domain]:8080/.
+```
+## Now with User Story support
+createUserStory.bat is available for creating a single folder structure that manages both git and svn repos.
+
+# README
 A continuous (for UI) development environment; deliver static content directly from your repository instead of from the JBoss AS.
-	
-	== EFFECTS ==	
-	(1) http://localhost/
-		(*) Becomes a gateway for http://[any-portal]:8080/
-		(*) **MAN IN THE MIDDLE** delivery of static resource requests.
-		
-	== BENEFITS ==
-	(1) Run "your" static resources (js/html/css), without re-building/deploying.
-		(*) Not a hot-deploy edit, which could be lost.
-	(2) Swap branches of (static) code without re-building/deploying.
-	(3) Point at any development server (Local/MISC/PLATFORM_AHP/etc), without re-building/deploying.
-		(*) You do NOT even have to update your system/hosts file (DNS).
-		
-	== SETUP ==
-	(1) Download this repository and place it at **C:\** with the name **apache** and access **C:\apache\odx-portal-gateway**.  
-		(*) This directory contains all of the scripts needed to operate the gateway.
-	(2) Run the .bat file of the environment you want to develop against.
-		(*) You will automatically be prompted to provide a portal repo.
-	(3) Quickly change environments or repositories (with setRepo.bat).
-	
-	== START ==
-	(1) LOCALHOST.bat
-	(2) PLATFORM_AHP.bat
-	(3) MISC.bat
-	(4) ENTERPRISE.bat
-	(5) ENTERPRISE1.bat
-	
-	== MAN IN THE MIDDLE ==
-	(1) setRepo.bat
-		(*) Executed automatically by .startOdxPortal.bat if certain hidden data files are not present.
-		(*) Select the file-system location of the git or svn repo that will serve the static content.
-		(*) The developer should prepare their IDE(s) to point to the file-system location provided (as appropriate).
-	(2) .startOdxPortal.bat
-		(*) Invoked along with the **domain** of the deployed odx-portal (git or svn).
-		(*) http://localhost/ now replaces previous use of http://[**domain**]:8080/
-		(*) The configured repository will be the **live domain** code being executed.
+## EFFECTS	
+ 1.  http://localhost/
+    +  Becomes a gateway for http://[any-portal]:8080/
+    +  **MAN IN THE MIDDLE** delivery of static resource requests.
+## BENEFITS
+ 1.  Run "your" static resources (js/html/css), without re-building/deploying. 
+	*  Not a hot-deploy edit, which could be lost.
+ 2.  Swap branches of (static) code without re-building/deploying.
+ 3.  Point at any development server (Local/Team/UAT/Stage/Prod/etc), without re-building/deploying.
+	*  You do NOT even have to update your system/hosts file (DNS).
+## SETUP
+ 1.  Place the **gateway** at **C:\\** with the name **apache**.
+	*  **cd C:\\apache\\gateway**
+	*  This directory contains all of the scripts needed to operate the gateway.
+ 2.  Run the .bat file of the environment you want to develop against.
+	*  You will automatically be prompted to provide a portal repo.
+ 3.  Quickly change environments or repositories (with setRepo.bat).
+## START
+ 1.  LOCALHOST.bat
+## MAN IN THE MIDDLE
+ 1.  setRepo.bat 
+	*  Executed automatically by .start.bat if certain hidden data files are not present.
+	*  Select the file-system location of the git or svn repo that will serve the static content.
+	*  The developer should prepare their IDE(s) to point to the file-system location provided (as appropriate).
+ 2. .start.bat
+	*  Invoked along with the **domain** of the deployed repository code (git or svn).
+	*  http://localhost/ now replaces previous use of http://[**domain**]:8080/
+	*  The configured repository will be the **live domain** code being executed.
