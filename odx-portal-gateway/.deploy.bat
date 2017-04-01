@@ -8,8 +8,6 @@ if not exist .as (
 )
 set /p repo=<.repo
 set /p jboss=<.as
-echo this is the repo: %repo%
-echo this is the jboss: %jboss%
 if "%login%" == "" (
 	goto:loginqb
 )

@@ -11,7 +11,6 @@ cd %jboss%\standalone\deployments
 :loginq
 set /p login="Delete the login app [Y/N]? "
 if /i "%login%"=="Y" (
-	echo delete the odxp_login*.war* resources.
 	del odxp_login*.war*
 ) else (
 	if /i not "%login%" == "N" ( 		
@@ -33,8 +32,6 @@ if /i "%service%" == "Y" (
 set /p ui="Delete the ui app [Y/N]? "
 if /i "%ui%" == "Y" (
 	del odxp-ui*.war*
-	:undui
-	if not exist 
 ) else (
 	if /i not "%ui%" == "N" (	
 		goto:uiq
