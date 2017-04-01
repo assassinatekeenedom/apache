@@ -4,3 +4,4 @@ conf/httpd.conf
 odx-portal-gateway/.userstory
 odx-portal-gateway/.domain
 logs/**
+.as
