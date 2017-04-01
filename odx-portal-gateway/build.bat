@@ -34,13 +34,23 @@ if exist "%module%" (
 :skiptestsq
 set /p skipTests="Do you want to skip tests [Y/N]? " 
 if /i "%skipTests%" == "Y" (
-	mvn clean install -DskipTests
+	echo mvn clean install -DskipTests>.build.bat
+	call .build.bat
+	del .build.bat
 ) else (
 	if /i "%skipTests%" == "N" (
-		mvn clean org.jacoco:jacoco-maven-plugin:0.7.2.201409121644:prepare-agent install
+		echo mvn clean org.jacoco:jacoco-maven-plugin:0.7.2.201409121644:prepare-agent install>.build.bat
+		call .build.bat
+		del .build.bat
 	) else (
 		goto:skiptestsq
 	)
 )
+cd %repo%
+set /p another="Do you want to do another build [Y/N]? " 
+if /i "%another%" == "Y" (
+	goto:testappq
+)
 cd %odxp%
+call .cleanAS.bat
 endlocal

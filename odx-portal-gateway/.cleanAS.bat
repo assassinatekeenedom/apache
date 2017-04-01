@@ -5,7 +5,6 @@ if not exist ".as" (
 	call setAS.bat
 )
 set /p jboss=<.as
-echo JBoss at %jboss%
 set odxp=%cd%
 cd %jboss%\standalone\deployments
 
@@ -34,6 +33,8 @@ if /i "%service%" == "Y" (
 set /p ui="Delete the ui app [Y/N]? "
 if /i "%ui%" == "Y" (
 	del odxp-ui*.war*
+	:undui
+	if not exist 
 ) else (
 	if /i not "%ui%" == "N" (	
 		goto:uiq
@@ -46,10 +47,10 @@ if /i "%startup%" == "Y" (
 	cd %jboss%\bin
 	start standalone.bat -b 0.0.0.0 --debug 8797 --server-config=standalone-full.xml
 ) else (
-	if /i not "%ui%" == "N" (	
+	if /i not "%startup%" == "N" (	
 		goto:asq
 	)
 )
 cd %odxp%
-call deploy.bat
+call .deploy.bat
 endlocal

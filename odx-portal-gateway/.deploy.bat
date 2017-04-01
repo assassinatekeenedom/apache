@@ -1,33 +1,37 @@
 @ECHO OFF
 setlocal
+if not exist .repo (
+	call setRepo.bat
+)
 if not exist .as (
 	call setAS.bat
 )
-set jboss=<.as
+set /p repo=<.repo
+set /p jboss=<.as
+echo this is the repo: %repo%
+echo this is the jboss: %jboss%
 if "%login%" == "" (
 	goto:loginqb
 )
 :resumes
 if /i "%login%" == "Y" (
-	echo copy login app to %jboss%\standalone\deployments.
+	copy %repo%\testapp\OdxpLoginApp\target\odxp_login_app*.war %jboss%\standalone\deployments\
 )
 if "%services%" == "" (
 	goto:serviceqb
 )
 :resumeu
 if /i "%service%" == "Y" (
-	echo copy services app to %jboss%\standalone\deployments
+	copy %repo%\src\odxp_services\target\odxp-services*.war %jboss%\standalone\deployments\
 )
 if "%ui%" == "" (
 	goto:uiqb
 )
 :finish
 if /i "%ui%" == "Y" (
-	echo copy ui app to %jboss%\standalone\deployments
+	copy %repo%\src\odxp_ui\target\odxp-ui*.war %jboss%\standalone\deployments\
 )
-echo login? %login%
-echo service? %service%
-echo ui? %ui%
+del %jboss%\standalone\deployments\odxp-*.undeployed
 endlocal
 exit /b 0
 
