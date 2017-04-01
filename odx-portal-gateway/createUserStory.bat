@@ -12,7 +12,6 @@ if exist "odx-portal-%userstory%" (
 	echo ERROR - %userstory% already exists.
 	exit /b 0
 )
-echo %userstory%>>.userstory
 mkdir %userstory%
 cd %userstory%
 svn copy https://svn.uhg.com/optum-hie/hie2/trunk/odx-portal https://svn.uhg.com/optum-hie/hie2/branches/odx-portal-%userstory% -m "%userstory% - initializing branch repository."
