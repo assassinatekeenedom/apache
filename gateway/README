@@ -4,16 +4,27 @@ A continuous (for UI) development environment; deliver static content directly f
     +  Becomes a gateway for http://[**domain**]:8080/
     +  **MAN IN THE MIDDLE** delivery of configured static resource requests.
 ## SETUP ##
+
+Designed to be run and managed from the command line.
+
  1.  ### Place this repository at **C:\\** and do not change the name. ###
 	*  **cd C:\\apache\\gateway**
 		*  This directory contains all of the scripts needed to operate the gateway.
  2.  Run LOCALHOST.bat or ".start.bat **domain**" to turn on the service.
 	*  You will automatically be prompted to provide a portal repo.
 	*  You will access the service through your browser at http://localhost/
- 3.  Quickly change environments or repositories (with .start.bat and setRepo.bat respectively).
+ 3.  Quickly change environments or repositories (with **.start.bat** and **setRepo.bat** respectively).
  4.  This setup assumes there is a running version of the repository application at the target environment's port 8080 (default web application server).
 	*  You can run this service at any time, regardless of if the application server is running.
 	*  You can leave this service running when stopping and starting the application server.
+ 5.  This setup assumes you're using windows with the following services (on the system's PATH):
+	*  java
+	*  git
+	*  svn
+	*  mvn
+ 6.  Other pre-configured services
+	*  sonar
+	*  jboss
 ## START ##
  1.  LOCALHOST.bat
  2.  .start.bat **domain**
