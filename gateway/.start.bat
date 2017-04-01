@@ -39,5 +39,4 @@ for /f "tokens=1,2,3 delims= " %%a in (..\odx-portal-gateway\.static-contexts) d
 endlocal
 cd ..\bin
 start httpd.exe
-cd ..\odx-portal-gateway
-        
+cd ..\gateway
