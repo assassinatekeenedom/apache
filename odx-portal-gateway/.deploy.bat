@@ -29,7 +29,7 @@ if "%ui%" == "" (
 if /i "%ui%" == "Y" (
 	copy %repo%\src\odxp_ui\target\odxp-ui*.war %jboss%\standalone\deployments\
 )
-del %jboss%\standalone\deployments\odxp-*.undeployed
+del %jboss%\standalone\deployments\odxp*.undeployed
 endlocal
 exit /b 0
 
