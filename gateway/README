@@ -22,18 +22,19 @@ Designed to be run and managed from the command line.
 	*  git
 	*  svn
 	*  mvn
- 6.  Other pre-configured services
+ 6.  Other assumed to exist pre-configured services
 	*  sonar
-	*  jboss
+	*  application server
 ## START ##
  1.  LOCALHOST.bat
  2.  .start.bat **domain**
 ## MAN IN THE MIDDLE ##
  1.  setRepo.bat 
-	*  Executed automatically by .start.bat if certain hidden data files are not present.
-	*  Select the file-system location of the git or svn repo that will serve the static content.
-	*  The developer should prepare their IDE(s) to point to the file-system location provided (as appropriate).
+	-  Executed automatically by .start.bat if certain hidden data files are not present.
+	-  Select the file-system location of the git or svn repo that will serve the static content.
+		- needs to be scrubbed; assumes hard-coded contexts, paths, and ports.
+	-  The developer should prepare their IDE(s) to point to the file-system location provided (as appropriate).
  2. .start.bat
-	*  Invoked along with the **domain** of the deployed repository code (git or svn).
-	*  http://localhost/ now replaces previous use of http://[**domain**]:8080/
-	*  The configured repository will be the **live domain** code being executed.
+	-  Invoked along with the **domain** of the deployed repository code (git or svn).
+	-  http://localhost/ now replaces previous use of http://[**domain**]:8080/
+	-  The configured repository will be the **live domain** code being executed.

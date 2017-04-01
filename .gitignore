@@ -3,6 +3,7 @@ conf/httpd.conf
 gateway/.repo
 gateway/.static-contexts
 gateway/.userstory
+gateway/.branch
 gateway/.domain
 gateway/.as
 
