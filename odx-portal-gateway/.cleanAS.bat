@@ -10,7 +10,7 @@ cd %jboss%\standalone\deployments
 
 :loginq
 set /p login="Delete the login app [Y/N]? "
-if /i "%login%"=="Y" (
+if /i "%login%" == "Y" (
 	del odxp_login*.war*
 ) else (
 	if /i not "%login%" == "N" ( 		

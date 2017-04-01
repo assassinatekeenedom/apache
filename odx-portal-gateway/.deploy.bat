@@ -15,7 +15,7 @@ if "%login%" == "" (
 if /i "%login%" == "Y" (
 	copy %repo%\testapp\OdxpLoginApp\target\odxp_login_app*.war %jboss%\standalone\deployments\
 )
-if "%services%" == "" (
+if "%service%" == "" (
 	goto:serviceqb
 )
 :resumeu
