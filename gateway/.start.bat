@@ -8,7 +8,6 @@ if not exist ".repo" (
 )
 echo %1>.domain
 set /p repo=<.repo
-echo base for context building is %repo%
 cd ..\conf\
 del httpd.conf
 copy original\httpd.conf .>nul
