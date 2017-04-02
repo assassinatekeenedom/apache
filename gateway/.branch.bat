@@ -14,21 +14,24 @@ if exist "%branch%" (
 	echo ERROR - %branch% already exists.
 	exit /b 0
 )
-mkdir %branch%
-cd %branch%
 :scmq
 if exist "..\.scm-git" (
-	set /p scm=<..\.scm-git
+	cd ..
+	set /p scm=<.scm-git
+	cd .branch
 	git clone %scm% git-%branch%>nul
 	cd git-%branch%
 	git checkout -b %branch%>nul
 	git push origin %branch%>nul
+	cd ..
 )
 if exist "..\.scm-svn-trunk" (
-	set /p trunk=<..\.scm-svn-trunk
-	set /p branch=<..\.scm-svn-branch
-	set /p named=<..\.named
-	svn copy %trunk% %branch%/%named%-%branch% -m "%branch% - initializing branch repository.">nul
+	cd ..
+	set /p scm=<.scm-svn-trunk
+	set /p branch=<.scm-svn-branch
+	set /p named=<.named
+	cd .branch
+	svn copy %scm% %branch%/%named%-%branch% -m "%branch% - initializing branch repository.">nul
 	svn co %branch%/%named%-%branch% %branch%>nul
 )
 if "%scm%" == "" (
