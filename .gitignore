@@ -6,6 +6,7 @@ gateway/.userstory
 gateway/.branch
 gateway/.domain
 gateway/.as
+gateway/.named
 gateway/.scm-*
 
 
