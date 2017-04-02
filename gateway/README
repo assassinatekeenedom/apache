@@ -1,5 +1,3 @@
-Full documentation found here: https://bitbucket.org/optumenterprise/apache/wiki/Home
-
 A continuous (for UI) development environment; deliver static content directly from your *repository* **instead of** from the *application server*.
 # EFFECTS #
  1.  http://localhost/
@@ -15,7 +13,7 @@ Designed to be run and managed from the command line.
 	-  **If you do have to change the name or location; update the conf/original/httpd.conf file**.
 
  1.  Run **LOCALHOST.bat** or **.start.bat domain** to turn on the service.
-	-  You will automatically be prompted to provide a portal repo.
+	-  You will automatically be prompted to provide the intercepting repository location.
 	-  You will access the service through your browser at http://localhost/
  2.  Quickly change environments or repositories (with **.start.bat** and **setRepo.bat** respectively).
  3.  This setup assumes there is a running application server hosting the target repository (from **setRepo.bat** and **context.bat**) at the target environment's port 8080.
@@ -24,8 +22,8 @@ Designed to be run and managed from the command line.
 		* It will always perform its part of the process without causing errors or crashes.
  4.  This setup assumes you're using windows with the following services (on the system's PATH):
 	*  java
-	*  git
-	*  svn
+	*  git (optional, iff svn set)
+	*  svn (optional, iff git set)
 	*  mvn
  5.  Other assumed to exist pre-configured services
 	*  sonar
