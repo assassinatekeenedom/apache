@@ -8,3 +8,4 @@ gateway/.domain
 gateway/.as
 gateway/.named
 gateway/.scm-*
+gateway/my*.bat
