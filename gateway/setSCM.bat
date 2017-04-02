@@ -10,10 +10,6 @@ if "%1%" == "" (
 )
 :donescm
 endlocal
-type .named
-type .scm-git
-type .scm-svn-trunk
-type .scm-svn-branch
 exit /b 0
 
 :manualq
@@ -27,6 +23,7 @@ set /p svnTrunk="What is the base URL for svn Trunk repositories (press enter fo
 if "%svnTrunk%" == "" (
 	if exist ".scm-svn-trunk" del .scm-svn-trunk
 	if exist ".scm-svn-branch" del .scm-svn-branch
+	if not exist ".scm-git" del .named
 	goto:donescm
 ) else (
 	goto:trunkName
