@@ -34,7 +34,7 @@ Designed to be run and managed from the command line.
 # MAN IN THE MIDDLE #
  1.  setRepo.bat 
 	-  Executed automatically by .start.bat if certain hidden data files are not present.
-	-  There are 3 potential paths through this script (all end with a unified file system):
+	-  There are 3 potential paths through this script (all end by setting the **.repo** value):
 		1.  Create new repositories in svn and git (it does not exist in either currently).
 			- results will be in the folder **gateway**/.build/[branch-name]
 		2.  (else) Checkout the repositories from svn and git (already created in both).
@@ -42,11 +42,11 @@ Designed to be run and managed from the command line.
 		3.  (else) Provide the full path to a folder of your choice (no SCM check)
 	-  The developer should prepare their IDE(s) to point to the file-system location provided (as appropriate).
  2.  contxt.bat
-	-  Adds an intercept context for a URL. 
+	1.  Adds an intercept context for a URL. 
 		-  e.g. /**{context}**/*
-	-  Adds a route for this intercept based on the repository root directory
+	2.  Adds a route for this intercept based on the repository root directory
 		-  e.g. /src/main/webapps/js
-	-  Adds a port for the intercept routing, any available ports will do.
+	3.  Adds a port for the intercept routing, any available ports will do.
 		-  e.g. 1337
 	-  (for) Each time this script is run it appends a new line to the **.static-contexts** file.
 		-  delete the file to reset configurations
