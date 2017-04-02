@@ -74,7 +74,7 @@ set /p scm=<.scm-svn-branch
 set /p trunk=<.named
 cd .branch
 svn co %scm%/%trunk%-%named% %named%>nul
-]
+
 if exist "git-%named%" (
 	if exist "%named%" (
 		cd git-%named%
