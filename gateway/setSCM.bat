@@ -1,5 +1,22 @@
 @ECHO OFF
 setlocal
+if "%1%" == "" (
+	goto:manualq
+) else (
+	echo %1>.named
+	echo %2>.scm-git
+	echo %3/%1>.scm-svn-trunk
+	echo %4>.scm-svn-branch
+)
+:donescm
+endlocal
+type .named
+type .scm-git
+type .scm-svn-trunk
+type .scm-svn-branch
+exit /b 0
+
+:manualq
 set /p git="What is the URL for the remote git repository (press enter for none)? "
 if "%git%" == "" (
 	if exist ".scm-git" del .scm-git
@@ -14,16 +31,6 @@ if "%svnTrunk%" == "" (
 ) else (
 	goto:trunkName
 )
-:branchq
-set /p svnBranch="What is the base URL for branches from %svnTrunk%? "
-if "%svnBranch%" == "" (
-	if exist ".scm-svn-branch" del .scm-svn-branch
-) else (
-	echo %svnBranch%>.scm-svn-branch
-)
-:donescm
-exit /b 0
-endlocal
 
 :trunkName
 set /p svnName="What is the name of the target repository in Trunk? "
@@ -34,3 +41,12 @@ if "%svnName%" == "" (
 )
 echo %svnTrunk%/%svnName%>.scm-svn-trunk
 goto:branchq
+
+:branchq
+set /p svnBranch="What is the base URL for branches from %svnTrunk%? "
+if "%svnBranch%" == "" (
+	if exist ".scm-svn-branch" del .scm-svn-branch
+) else (
+	echo %svnBranch%>.scm-svn-branch
+)
+goto:donescm
