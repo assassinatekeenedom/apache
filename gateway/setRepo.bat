@@ -79,7 +79,7 @@ if exist "git-%named%" (
 	if exist "%named%" (
 		cd git-%named%
 		git checkout -b %named% origin/%named%>nul
-		git push --set-upstream origin %named%
+		git push --set-upstream origin %named%>nul
 		xcopy .git ..\%named%\.git /s /i /h /q>nul
 		xcopy .gitignore ..\%named%\.gitignore*>nul
 		cd ..

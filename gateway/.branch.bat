@@ -19,10 +19,10 @@ if exist "..\.scm-git" (
 	cd ..
 	set /p scm=<.scm-git
 	cd .branch
-	git clone %scm% git-%branch%>nul
+	git clone %scm% git-%branch%
 	cd git-%branch%
-	git checkout -b %branch%>nul
-	git push origin %branch%>nul
+	git checkout -b %branch%
+	git push origin %branch%
 	cd ..
 )
 if exist "..\.scm-svn-trunk" (
