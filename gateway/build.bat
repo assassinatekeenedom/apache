@@ -54,3 +54,4 @@ if /i "%another%" == "Y" (
 cd %odxp%
 call .cleanAS.bat
 endlocal
+exit /b 0

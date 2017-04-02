@@ -51,3 +51,4 @@ if /i "%startup%" == "Y" (
 cd %odxp%
 call .deploy.bat
 endlocal
+exit /b 0

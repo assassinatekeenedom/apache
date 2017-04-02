@@ -19,7 +19,7 @@ if "%git%" == "" (
 ) else (
 	echo %git%>.scm-git
 )
-set /p svnTrunk="What is the base URL for svn Trunk repositories (press enter for none)? "
+set /p svnTrunk="What is the base URL for svn Trunk repositories, do NOT include the project name (press enter for none)? "
 if "%svnTrunk%" == "" (
 	if exist ".scm-svn-trunk" del .scm-svn-trunk
 	if exist ".scm-svn-branch" del .scm-svn-branch
@@ -30,7 +30,7 @@ if "%svnTrunk%" == "" (
 )
 
 :trunkName
-set /p svnName="What is the name of the target repository in Trunk? "
+set /p svnName="What is the name of the target project in Trunk? "
 if "%svnName%" == "" (
 	goto:trunkName
 ) else (

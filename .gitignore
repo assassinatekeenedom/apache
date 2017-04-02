@@ -5,7 +5,7 @@ gateway/.repo
 gateway/.static-contexts
 gateway/.branch
 gateway/.domain
-gateway/.as
+gateway/.as*
 gateway/.named
 gateway/.scm-*
 gateway/my*.bat

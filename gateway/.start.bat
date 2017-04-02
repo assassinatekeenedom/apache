@@ -26,7 +26,6 @@ for /f "tokens=1,2,3 delims= " %%a in (..\gateway\.static-contexts) do (
 )
 echo    ProxyPass / http://%1:8080/>>httpd.conf
 echo ^</VirtualHost^>>>httpd.conf
-rem read in the %repo% value, and make %%b into %repo%%%b
 for /f "tokens=1,2,3 delims= " %%a in (..\gateway\.static-contexts) do (
 	echo Listen %%c>>httpd.conf
 	echo NameVirtualHost *:%%c>>httpd.conf
@@ -45,3 +44,4 @@ endlocal
 cd ..\bin
 start httpd.exe
 cd ..\gateway
+exit /b 0
