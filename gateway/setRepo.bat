@@ -9,7 +9,6 @@ if not "%1%"=="" (
 set /p named="What is the name of the branch? "
 if "%named%" == "" goto:initName
 :initq
-echo Name is set!  %named%
 set /p clone="Do you need to create this branch [Y/N]? "
 if /i "%clone%" == "Y" (
 	call .branch.bat %named%
@@ -48,7 +47,6 @@ if exist "%named%" (
 	exit /b 0
 )
 set repo=%cd%^\%named%
-echo assuming success ... repo is %repo%.
 :scmq
 if exist "..\.scm-git" (
 	goto:scmgitq
@@ -67,8 +65,7 @@ if "%scm%" == "" (
 cd ..
 set /p scm=<.scm-git
 cd .branch
-echo cloning %scm%
-git clone %scm% git-%named%
+git clone %scm% git-%named%>nul
 goto:svnstartq
 
 :scmbranchq
@@ -76,23 +73,23 @@ cd ..
 set /p scm=<.scm-svn-branch
 set /p trunk=<.named
 cd .branch
-svn co %scm%/%trunk%-%named% %named%
+svn co %scm%/%trunk%-%named% %named%>nul
 
 :scmresolveq
 if exist "git-%named%" (
 	if exist "%named%" (
 		cd git-%named%
-		git checkout %named%
-		xcopy .git ..\%named%\.git /s /i /h /q
-		xcopy .gitignore ..\%named%\.gitignore*
+		git checkout %named%>nul
+		xcopy .git ..\%named%\.git /s /i /h /q>nul
+		xcopy .gitignore ..\%named%\.gitignore*>nul
 		cd ..
 		rmdir /s /q git-%named%
 		goto:doneq
 	) else (
-		xcopy git-%named% %named% /s /i /h /q
+		xcopy git-%named% %named% /s /i /h /q>nul
 		rmdir /s /q git-%named%
 		cd %named%
-		git checkout %named%
+		git checkout %named%>nul
 		cd ..
 		goto:doneq
 	)
