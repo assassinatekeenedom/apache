@@ -2,29 +2,91 @@
 setlocal
 set origin=%cd%
 if "%1%"=="" (
-	set named=odx-portal
-) else (
-	set named=%1%
-)
-set /p clone="Do you need a new clone of the odx-portal repository [Y/N]? "
-if /i "%clone%" == "Y" (
-	call:getLocalRepo
-	git clone https://codehub.optum.com/odx-portal/odx-portal.git %named%
-	cd %origin%
-)
-if /i "%clone%" == "N" (
-	set /p repo="Where is your odx-portal repository located (file-path)? "
-)
-echo %repo%>.repo
-echo /odxp/js/ %repo%\src\odxp_ui\src\main\webapp\js 1337>.static-contexts
-echo /odxp/templates/ %repo%\src\odxp_ui\src\main\webapp\templates 1338>>.static-contexts
-echo /odxp/css/ %repo%\src\odxp_ui\src\main\webapp\css 1339>>.static-contexts
-echo /odxp/uitk-lib-custom/ %repo%\src\odxp_ui\src\main\webapp\uitk-lib-custom 1340>>.static-contexts
-echo Your repository ^(%repo%^) is now the active source of static resources; instead of the JBoss container.
-endlocal
-exit /b 0
-:getLocalRepo
-	set /p local="Where do you want the cloned repository located (file-path)? "
-	cd %local%
-	set repo=%local%^\%named%
+	echo please provide the name of the repository.
 	exit /b 0
+)
+set named=%1%
+:initq
+set /p clone="Do you need to initialize (create) this branch [Y/N]? "
+if /i "%clone%" == "Y" (
+	call branch.bat %named%
+	set repo=%cd%\.branch\%named%
+	goto:doneq
+) else (
+	if /i not "%clone%" == "N" (
+		goto:initq
+	)
+)
+:cloneq
+set /p clone="Do you need a new repository [Y/N]? "
+if /i "%clone%" == "Y" (
+	goto:getLocalRepo
+) else (
+	if /i not "%clone%" == "N" (
+		goto:cloneq
+	)
+	goto:hasLocalRepo
+)
+:doneq
+echo %repo%>.repo
+echo The repository ^(%repo%^) is now the active.
+endlocal
+cd %origin%
+exit /b 0
+:hasLocalRepo
+set /p repo="Where is your repository located (file-path)? "
+goto:doneq
+:getLocalRepo
+set /p local="Where do you want the repository located (file-path)? "
+if not exist "%local%" (
+	echo That folder (%local%) does not exist.
+	goto:getLocalRepo
+)
+cd %local%
+set repo=%local%^\%named%
+echo assuming success ... repo is %repo%.
+:scmq
+if exist ".scm-git" (
+	set /p scm=<.scm-git
+	git clone %scm% git-%named%
+)
+if exist ".scm-svn-branch" (
+	set /p scm=<.scm-svn-branch
+	svn co %scm% svn-%named%
+)
+if "%scm%" == "" (
+	call setSCM.bat
+	goto:scmq
+)
+if exist "git-%named%" (
+	if exist "svn-%named%" (
+		cd git-%named%
+		git checkout %named%
+		xcopy .git ..\svn-%named%\.git /s /i /h
+		xcopy .gitignore ..\svn-%named%\.gitignore*
+		cd ..
+		move svn-%named% %named%
+		rmdir /s /q git-%named%
+		goto:doneq
+	) else (
+		cd git-%named%
+		git checkout %named%
+		cd ..
+		move git-%named% %named%
+		goto:doneq
+	)
+) 
+if exist "svn-%named%" (
+	move svn-%named %named%
+	goto:doneq
+)
+echo there was an error processing your repository.
+if exist ".repo" (
+	del .repo
+)
+set /p named="Please try again with a new name: "
+call setRepo.bat %named%
+exit /b 0
+
+
+	

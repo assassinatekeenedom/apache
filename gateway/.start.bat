@@ -22,6 +22,7 @@ for /f "tokens=1,2,3 delims= " %%a in (..\odx-portal-gateway\.static-contexts) d
 )
 echo    ProxyPass / http://%1:8080/>>httpd.conf
 echo ^</VirtualHost^>>>httpd.conf
+rem read in the %repo% value, and make %%b into %repo%%%b
 for /f "tokens=1,2,3 delims= " %%a in (..\odx-portal-gateway\.static-contexts) do (
 	echo Listen %%c>>httpd.conf
 	echo NameVirtualHost *:%%c>>httpd.conf
