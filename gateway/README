@@ -41,7 +41,7 @@ Designed to be run and managed from the command line.
 			- results will be in the folder **gateway**/.build/[branch-name]
 		3.  (else) Provide the full path to a folder of your choice (no SCM check)
 	-  The developer should prepare their IDE(s) to point to the file-system location provided (as appropriate).
- 2.  contxt.bat
+ 2.  context.bat
 	1.  Adds an intercept context for a URL. 
 		-  e.g. /**{context}**/*
 	2.  Adds a route for this intercept based on the repository root directory
