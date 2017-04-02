@@ -12,7 +12,7 @@ Designed to be run and managed from the command line.
 	-  This directory contains all of the scripts needed to operate the gateway.
 	-  **If you do have to change the name or location; update the conf/original/httpd.conf file**.
 
- 1.  Run **LOCALHOST.bat** or **.start.bat domain** to turn on the service.
+ 1.  Run **startGateway.bat** or **.start.bat domain** to turn on the service.
 	-  You will automatically be prompted to provide the intercepting repository location.
 	-  You will access the service through your browser at http://localhost/
  2.  Quickly change environments or repositories (with **.start.bat** and **setRepo.bat** respectively).
@@ -29,7 +29,7 @@ Designed to be run and managed from the command line.
 	*  sonar
 	*  application server
 # START #
- 1.  LOCALHOST.bat
+ 1.  startGateway.bat
  2.  .start.bat **domain**
 
 # MAN IN THE MIDDLE #
