@@ -1,8 +1,8 @@
 logs/**
 conf/httpd.conf
+gateway/.us
 gateway/.repo
 gateway/.static-contexts
-gateway/.userstory
 gateway/.branch
 gateway/.domain
 gateway/.as

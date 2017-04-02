@@ -9,6 +9,7 @@ if not "%1%"=="" (
 set /p named="What is the name of the branch? "
 if "%named%" == "" goto:initName
 :initq
+echo %named%>.us
 set /p clone="Do you need to create this branch [Y/N]? "
 if /i "%clone%" == "Y" (
 	call .branch.bat %named%
