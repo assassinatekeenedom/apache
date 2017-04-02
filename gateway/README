@@ -45,7 +45,7 @@ Designed to be run and managed from the command line.
 	1.  Adds an intercept context for a URL. 
 		-  e.g. /**{context}**/*
 	2.  Adds a route for this intercept based on the repository root directory
-		-  e.g. /src/main/webapps/js
+		-  e.g. \src\main\webapps\js
 	3.  Adds a port for the intercept routing, any available ports will do.
 		-  e.g. 1337
 		
