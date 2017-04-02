@@ -1,15 +1,17 @@
 @ECHO OFF
 setlocal
 set origin=%cd%
-if not "%1%"=="" (
-	set named=%1
-	goto:initq
-)
+if "%1" == "" goto:initName
+set named=%1
+if "%2" == "" goto:initq
+if not exist "%2" echo that folder doesn't exist. && goto:hasLocalRepo
+set repo=%2
+goto:doneq
+
 :initName
 set /p named="What is the name of the branch? "
 if "%named%" == "" goto:initName
 :initq
-echo %named%>.us
 set /p clone="Do you need to create this branch [Y/N]? "
 if /i "%clone%" == "Y" (
 	call .branch.bat %named%
@@ -32,11 +34,12 @@ if /i "%clone%" == "Y" (
 )
 :doneq
 cd %origin%
+echo %named%>.us
 echo %repo%>.repo
 echo The repository ^(%repo%^) is now set.
 endlocal
-
 exit /b 0
+
 :hasLocalRepo
 set /p repo="Where is your local repository located (file-path)? "
 if not exist "%repo%" echo that folder doesn't exist. && goto:hasLocalRepo
@@ -73,7 +76,6 @@ goto:svnstartq
 set /p scm=<.scm-git
 cd .branch
 
-
 :scmbranchq
 cd ..
 set /p scm=<.scm-svn-branch
@@ -91,14 +93,13 @@ if exist "git-%named%" (
 		cd ..
 		rmdir /s /q git-%named%
 		goto:doneq
-	) else (
-		xcopy git-%named% %named% /s /i /h /q>nul
-		rmdir /s /q git-%named%
-		cd %named%
-		git checkout %named%>nul
-		cd ..
-		goto:doneq
 	)
+	xcopy git-%named% %named% /s /i /h /q>nul
+	rmdir /s /q git-%named%
+	cd %named%
+	git checkout %named%>nul
+	cd ..
+	goto:doneq
 ) 
 cd %origin%
 echo there was an error processing your repository.
