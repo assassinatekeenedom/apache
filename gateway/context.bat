@@ -22,6 +22,8 @@ if "%port%" == "" (
 	goto:portq
 )
 echo %context% %route% %port%>>.static-contexts
+set /p another="Do you need another static context [Y/N]? "
+if /i "%another%" == "Y" goto:manualcq
 :finishq
 endlocal
 exit /b 0

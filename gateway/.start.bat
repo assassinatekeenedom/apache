@@ -1,9 +1,14 @@
 @ECHO OFF
 setlocal
 IF NOT EXIST ".static-contexts" (
-    call setRepo.bat
+    call context.bat
+)
+if not exist ".repo" (
+	call setRepo.bat
 )
 echo %1>.domain
+set /p repo=<.repo
+echo base for context building is %repo%
 cd ..\conf\
 del httpd.conf
 copy original\httpd.conf .>nul
@@ -17,19 +22,19 @@ echo NameVirtualHost *:80>>httpd.conf
 echo ^<VirtualHost *:80^>>>httpd.conf
 echo    ServerName %1>>httpd.conf
 echo    ProxyPreserveHost On>>httpd.conf
-for /f "tokens=1,2,3 delims= " %%a in (..\odx-portal-gateway\.static-contexts) do (
+for /f "tokens=1,2,3 delims= " %%a in (..\gateway\.static-contexts) do (
 	echo    ProxyPass %%a http://localhost:%%c/>>httpd.conf
 )
 echo    ProxyPass / http://%1:8080/>>httpd.conf
 echo ^</VirtualHost^>>>httpd.conf
 rem read in the %repo% value, and make %%b into %repo%%%b
-for /f "tokens=1,2,3 delims= " %%a in (..\odx-portal-gateway\.static-contexts) do (
+for /f "tokens=1,2,3 delims= " %%a in (..\gateway\.static-contexts) do (
 	echo Listen %%c>>httpd.conf
 	echo NameVirtualHost *:%%c>>httpd.conf
 	echo ^<VirtualHost *:%%c^>>>httpd.conf
 	echo    ServerName *>>httpd.conf
-	echo    DocumentRoot "%%b">>httpd.conf
-	echo    ^<Directory "%%b"^>>>httpd.conf
+	echo    DocumentRoot "%repo%%%b">>httpd.conf
+	echo    ^<Directory "%repo%%%b"^>>>httpd.conf
 	echo        Options Indexes FollowSymLinks>>httpd.conf
 	echo        AllowOverride None>>httpd.conf
 	echo        Order allow,deny>>httpd.conf

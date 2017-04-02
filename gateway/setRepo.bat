@@ -33,7 +33,7 @@ if /i "%clone%" == "Y" (
 :doneq
 cd %origin%
 echo %repo%>.repo
-echo The repository ^(%repo%^) is now the active.
+echo The repository ^(%repo%^) is now set.
 endlocal
 
 exit /b 0
