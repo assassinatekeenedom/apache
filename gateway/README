@@ -48,6 +48,7 @@ Designed to be run and managed from the command line.
 		-  e.g. /src/main/webapps/js
 	3.  Adds a port for the intercept routing, any available ports will do.
 		-  e.g. 1337
+		
 	-  (for) Each time this script is run it appends a new line to the **.static-contexts** file.
 		-  delete the file to reset configurations
 		-  do not use the same port or the same context more than once.
