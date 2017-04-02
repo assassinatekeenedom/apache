@@ -1,6 +1,5 @@
 @ECHO OFF
 setlocal
-echo .scm-git
 set /p git="What is the URL for the remote git repository (press enter for none)? "
 if "%git%" == "" (
 	if exist ".scm-git" (
