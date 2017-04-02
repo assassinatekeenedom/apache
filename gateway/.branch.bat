@@ -54,6 +54,7 @@ git clone %scm% git-%branch%>nul
 cd git-%branch%
 git checkout -b %branch%>nul
 git push origin %branch%>nul
+git push --set-upstream origin %branch%>nul
 cd ..
 goto:scmsvnq
 

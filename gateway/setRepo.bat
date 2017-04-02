@@ -38,6 +38,7 @@ endlocal
 exit /b 0
 :hasLocalRepo
 set /p repo="Where is your local repository located (file-path)? "
+if not exist "%repo%" echo that folder doesn't exist. && goto:hasLocalRepo
 goto:doneq
 :getLocalRepo
 if not exist ".branch" mkdir .branch
@@ -67,6 +68,10 @@ set /p scm=<.scm-git
 cd .branch
 git clone %scm% git-%named%>nul
 goto:svnstartq
+
+set /p scm=<.scm-git
+cd .branch
+
 
 :scmbranchq
 cd ..
