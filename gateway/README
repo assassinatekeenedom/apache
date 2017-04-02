@@ -55,7 +55,8 @@ Designed to be run and managed from the command line.
 		-  you can modify this **.static-contexts** file by hand as needed
 		-  designed to have a wrapping script initialize all details for a particular configuration.
 			- implicating a delete of the current **.static-contexts** file
- 2.  .start.bat
+
+ 3.  .start.bat
 	-  Invoked along with the **domain** of the deployed repository code (git or svn).
 	-  http://localhost/ now replaces previous use of http://[**domain**]:8080/
 	-  The configured repository will be the **live domain** code being executed.
