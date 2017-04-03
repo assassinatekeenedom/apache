@@ -41,6 +41,11 @@ endlocal
 exit /b 0
 
 :hasLocalRepo
+set /p exists="Does this repository already exist under the ".branches" directory [Y/N]? "
+if /i "%exists%" == "Y" (
+	goto:repobranchq
+) else if /i not "%exists%" == "N" goto:hasLocalRepo
+
 set /p repo="Where is your local repository located (file-path)? "
 if not exist "%repo%" echo that folder doesn't exist. && goto:hasLocalRepo
 goto:doneq
@@ -110,5 +115,6 @@ set /p named="Please try again with a new name: "
 call setRepo.bat %named%
 exit /b 0
 
-
-	
+:repobranchq
+if  exist ".branch\%named%" set repo=%cd%\.branch\%named%
+goto:doneq
