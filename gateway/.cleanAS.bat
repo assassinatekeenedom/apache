@@ -13,7 +13,7 @@ if not "%1%"=="" (
 )
 :cleanmoreq
 dir /d
-set /p more="Do you have more files to delete? "
+set /p more="Do you have more files to delete [Y/N]? "
 if /i "%more%" == "Y" (
 	goto:cleanpatternq
 ) else (

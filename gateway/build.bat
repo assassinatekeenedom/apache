@@ -21,7 +21,7 @@ if /i "%build%" == "Y" (
 	goto:testappq
 )
 :deployappq
-set /p module="Provide the relative (from repo) path to the root of the application you want to deploy (leave empty if done): "
+set /p module="Provide the relative (from repo) path to the root of the application you want to build (leave empty if done): "
 if not "%module%" == "" (
 	if not exist "%repo%\%module%" echo could not find the application. && goto:deployappq
 	cd %module%
@@ -47,8 +47,8 @@ if /i "%skipTests%" == "N" (
 goto:skiptestsq
 
 :buildfinishq
+cd %odxp%
 call .cleanAS.bat
 call .deploy.bat
-cd %odxp%
 endlocal
 exit /b 0
