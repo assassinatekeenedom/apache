@@ -1,46 +1,44 @@
 @ECHO OFF
 setlocal
+
+:deployrepoq
 if not exist .repo (
 	call setRepo.bat
+	goto:deployrepoq
 )
+:deployasq
 if not exist .as (
 	call setAS.bat
+	goto:deployasq
 )
+set origin=%cd%
 set /p repo=<.repo
 set /p jboss=<.as
-if "%login%" == "" (
-	goto:loginqb
+cd %repo%
+if not "%1%" == "" (
+	copy %1\target\*.war %jboss%\
+	goto:deployfinishq
+) 
+dir /d
+:deployaskq
+set /p deploy="Do you have an artifact that needs to be deployed [Y/N]? "
+if /i "%deploy%" == "Y" (
+	goto:deployappq
+) else (
+	if /i not "%deploy%" == "N" ( 
+		goto:deployaskq
+	)
+	goto:deployfinishq
 )
-:resumes
-if /i "%login%" == "Y" (
-	copy %repo%\testapp\OdxpLoginApp\target\odxp_login_app*.war %jboss%\standalone\deployments\
+:deployappq
+set /p module="Provide the relative (from repo) path to the root of the application you want to deploy (leave empty if done): "
+if not "%module%" == "" (
+	if not exist "%repo%\%module%" echo could not find the application. && goto:deployappq
+	if not exist "%repo%\%module%\target" echo the application needs to be built. && goto:deployappq
+	copy %module%\target\*.war %jboss%\
+	goto:deployaskq
 )
-if "%service%" == "" (
-	goto:serviceqb
-)
-:resumeu
-if /i "%service%" == "Y" (
-	copy %repo%\src\odxp_services\target\odxp-services*.war %jboss%\standalone\deployments\
-)
-if "%ui%" == "" (
-	goto:uiqb
-)
-:finish
-if /i "%ui%" == "Y" (
-	copy %repo%\src\odxp_ui\target\odxp-ui*.war %jboss%\standalone\deployments\
-)
-del %jboss%\standalone\deployments\odxp*.undeployed
+:deployfinishq
+cd %odxp%
 endlocal
 exit /b 0
-
-:loginqb
-set /p login="Deploy the login app [Y/N]? "
-goto:resumes
-
-:serviceqb
-set /p service="Deploy the services app [Y/N]? "
-goto:resumeu
-
-:uiqb
-set /p ui="Deploy the ui app [Y/N]? "
-goto:finish
