@@ -67,6 +67,6 @@ goto:synchfinishq
 set /p gitmessage="%named% - "
 if "%gitmessage%" == "" goto:gitmsgq
 git add -A
-get commit -a -m "%named% - %gitmessage%"
+git commit -a -m "%named% - %gitmessage%"
 git push
 goto:synchfinishq
