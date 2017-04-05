@@ -20,6 +20,7 @@ if "%git%"=="Y" (
 	goto:gitcontrolq
 )
 :synchfinishq
+git status
 set /p reask="Anything to add/commit to svn now [Y/N]? "
 if /i "%reask%" == "Y" (
 	goto:svnandquit
@@ -34,11 +35,12 @@ set /p svnupdate="svn update [Y/N]? "
 if /i "%svnupdate%" == "Y" (
 	svn update
 	svn status
-) else if /i not "%commit%" == "N" goto:svncontrolq
+) else if /i not "%svnupdate%" == "N" goto:svncontrolq
 :svncommitq
-set /p commit="svn add and commit [Y/N]? "
-if /i "%commit%" == "Y" goto:svnmsgq
-if /i not "%commit% == "N" goto:svncommitq
+set /p svncommit="svn add and commit [Y/N]? "
+if /i "%svncommit%" == "Y" (
+	goto:svnmsgq
+) else if /i not "%svncommit%" == "N" goto:svncommitq
 goto:gitstartq
 :svnandquit
 set stop=Y
@@ -58,10 +60,10 @@ if /i "%gitpull%" == "Y" (
 	git pull
 ) else if /i not "%gitpull%" == "N" goto:gitpullq
 :gitpushq
-set /p push="git [add -A|commit -a -m|push -u] [Y/N]? "
-if /i "%push%" == "Y" (
+set /p gitpush="git [add -A|commit -a -m|push -u] [Y/N]? "
+if /i "%gitpush%" == "Y" (
 	goto:gitmsgq
-)  else if /i not "%push%" == "N" goto:gitpushq
+)  else if /i not "%gitpush%" == "N" goto:gitpushq
 goto:synchfinishq
 :gitmsgq
 set /p gitmessage="%named% - "
