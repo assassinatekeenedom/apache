@@ -75,11 +75,9 @@ if "%scm%" == "" (
 cd ..
 set /p scm=<.scm-git
 cd .branch
+echo git clone %scm% git-%named%
 git clone %scm% git-%named%>nul
 goto:svnstartq
-
-set /p scm=<.scm-git
-cd .branch
 
 :scmbranchq
 cd ..
