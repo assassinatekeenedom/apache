@@ -1,8 +1,11 @@
 @ECHO OFF
+startlocal
 if "%1" == "" goto:initName
 set named = %1
 :resume
-echo new node for farm will be: %named%
+if not exist ".scm-git" goto:norepo
+set /p scm=<.scm-git
+echo cloning a generic C:/jboss for this script as an example, jboss and clone of %scm% at %cd%\.farm\%named%
 if not exist ".farm" mkdir .farm
 cd .farm
 if exist "%named%" goto:collision
@@ -39,4 +42,7 @@ goto:skip
 set /p named="What is the name of the node for the farm? "
 if "%named%" == "" goto:initName
 goto:resume
+:norepo
+echo You need to have the repo set in the .repo file; or run the appropriate script.
 :skip
+endlocal

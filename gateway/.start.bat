@@ -24,7 +24,12 @@ echo    ProxyPreserveHost On>>httpd.conf
 for /f "tokens=1,2,3 delims= " %%a in (..\gateway\.static-contexts) do (
 	echo    ProxyPass %%a http://localhost:%%c/>>httpd.conf
 )
-echo    ProxyPass / http://%1:8080/>>httpd.conf
+echo first input: %1
+echo second input: %2
+if not "%2"=="" goto:initport
+set port=%2
+:middleman
+echo    ProxyPass / http://%1:%port%/>>httpd.conf
 echo ^</VirtualHost^>>>httpd.conf
 for /f "tokens=1,2,3 delims= " %%a in (..\gateway\.static-contexts) do (
 	echo Listen %%c>>httpd.conf
@@ -45,3 +50,7 @@ cd ..\bin
 start httpd.exe
 cd ..\gateway
 exit /b 0
+:initport
+set /p port="What port will the AS run on? "
+if "%port%" == "" goto:initport
+goto:middleman
