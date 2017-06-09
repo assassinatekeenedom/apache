@@ -1,0 +1,19 @@
+The script: startNodeGateway.bat will attempt to run the Apache httpd server to reverse proxy a particular .farm\[instance] provided to the script.
+
+
+any gateway (Manual apache httpd) management		      (	!,     A,     B,     C,     D,   ...)
+	[+] port listening on 80 for reverse proxy to AS port (8080, 31337, 31338, 31339, 31340, ...)
+		[+][+] finish active work (!) and then push to the end of the queue for trunk commit (assign letter; therefor actively staged).
+	[+] port bound for each static intercept:
+		(@portal):1337 - 'js'
+		(@portal):1338 - 'templates'
+		(@portal):1339 - 'css'
+		(@portal):1340 - 'uitk-lib-custom'
+		(@portal):1341 - 'i18n'
+
+This can be managed by updates (or creating) a .static-contexts file; mine holds the following to support ODXP:
+/odxp/js/ \src\odxp_ui\src\main\webapp\js 1337
+/odxp/templates/ \src\odxp_ui\src\main\webapp\templates 1338
+/odxp/css/ \src\odxp_ui\src\main\webapp\css 1339
+/odxp/uitk-lib-custom/ \src\odxp_ui\src\main\webapp\uitk-lib-custom 1340
+/odxp/i18n/ \src\odxp_ui\src\main\webapp\i18n 1341

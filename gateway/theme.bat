@@ -5,7 +5,7 @@ if not "%1%"=="" (
 	goto:theme
 )
 :retry
-set /p theme="What is the [name].bat of the theme (e.g. [cloud|error|build|scripts|server|snow][Invert])? "
+set /p theme="What is the [name].bat of the theme (e.g. [scm|build|server|scripts|error|cloud|snow][Invert])? "
 :theme
 call skin\context\%theme%.bat
 if not "%1%" == "" ( 

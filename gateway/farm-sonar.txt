@@ -1,0 +1,20 @@
+Copy C:\sonar to C:\...\.farm\[A-Z].
+
+under [sonar]/conf/ there are two properties files which need the following updates:
+	________________________________________
+	sonar.properties (defaults)
+		sonar.web.port=9000		
+		sonar.search.port=9001		
+		sonar.embeddedDatabase.port=9002		
+	----------------------------------------
+	sonar.properties (what I did...)
+		sonar.web.port=9001++
+		sonar.search.port=8999--
+		sonar.embeddedDatabase.port=7331++
+	________________________________________
+	wrapper.conf
+		wrapper.console.title=SonarQube - [.farm\name] (e.g. SonarQube - A).
+	----------------------------------------
+	wrapper.conf
+		wrapper.console.title=SonarQube - [.farm\name] (e.g. SonarQube - A).
+	________________________________________

@@ -1,0 +1,19 @@
+The script: createNode.bat will create a cloned JBoss instance, and checkout of the repo.
+The script: startNode.bat will attempt to run the startJBoss script at the .farm\[instance] provided to the script.
+
+Manual JBoss updates AS::
+	[+] port bound for each farm ([name]:[http]:[debug]):
+		A:31337:13370
+		B:31338:13371
+		C:31339:13372
+		D:31340:13473
+
+
+
+There is a script that will create a clone of an existing JBoss at C:\JBoss (currently C:\apache and C:\JBoss are hard-coded; due to time constraints)... 
+these script will request 3 pieces of information it needs: the name of the .farm\[instance] (folder name), the port it should bind to (something other than 8080,
+use some unique process), and the debug port.
+
+	[+] the debug port is passed in through the startJBoss.bat script within the [jboss]/bin directory.
+	[+] the port for binding is defined within the standalone-full.xml file in the [jboss]/standalone/configuration directory.
+	[+] The standalone-full.xml will also require the User (schema) for the local farm db instance of odxp.
