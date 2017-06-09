@@ -8,6 +8,5 @@ goto:resume
 :apply
 set portnum=%1%
 :resume
-echo .start.bat 127.0.0.1 %portnum%
 .start.bat 127.0.0.1 %portnum%
 endlocal

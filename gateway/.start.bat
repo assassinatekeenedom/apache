@@ -24,8 +24,6 @@ echo    ProxyPreserveHost On>>httpd.conf
 for /f "tokens=1,2,3 delims= " %%a in (..\gateway\.static-contexts) do (
 	echo    ProxyPass %%a http://localhost:%%c/>>httpd.conf
 )
-echo first input: %1
-echo second input: %2
 if "%2"=="" goto:initport
 set port=%2
 :middleman
