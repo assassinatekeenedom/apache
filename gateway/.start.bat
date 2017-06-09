@@ -26,7 +26,7 @@ for /f "tokens=1,2,3 delims= " %%a in (..\gateway\.static-contexts) do (
 )
 echo first input: %1
 echo second input: %2
-if not "%2"=="" goto:initport
+if "%2"=="" goto:initport
 set port=%2
 :middleman
 echo    ProxyPass / http://%1:%port%/>>httpd.conf

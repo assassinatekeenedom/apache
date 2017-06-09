@@ -1,8 +1,6 @@
 @ECHO OFF
 setlocal
-if not "%1"=="" (
-	goto:apply
-)
+if not "%1"=="" goto:apply
 :initName
 set /p portnum="What is the AS port number (8080 typically)? "
 if "%portnum%"=="" goto:initName
